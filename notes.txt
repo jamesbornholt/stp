@@ -1,0 +1,2 @@
+Building with MiniSat:
+    cmake -G 'Unix Makefiles' -DMINISAT_LIBRARY_DIRS=/Users/james/uw/sat-heuristics/minisat/build/ -DMINISAT_INCLUDE_DIRS=/Users/james/uw/sat-heuristics/minisat/ ..
