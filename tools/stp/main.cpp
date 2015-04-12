@@ -215,6 +215,9 @@ void ExtraMain::create_options()
       /*("constr-counterex,c",
          po::bool_switch(&(bm->UserFlags.construct_counterexample_flag))
           , "construct counterexample")*/
+      ("verbose-solver",
+       po::bool_switch(&(bm->UserFlags.verbose_solver)),
+       "Print verbose solver info")
       ("print-varorder,z",
        po::bool_switch(&(bm->UserFlags.print_sat_varorder_flag)),
        "Print SAT variable order")(

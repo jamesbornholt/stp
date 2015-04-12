@@ -163,6 +163,10 @@ void ToCNFAIG::fill_node_to_var(
     // INT_MAX for parts of symbols that didn't get encoded.
     vector<unsigned> v(width, ~((unsigned)0));
 
+    bool foundFirst = false;
+    unsigned first = 0;
+    unsigned last = 0;
+      
     for (unsigned i = 0; i < b.size(); i++)
     {
       if (!b[i].IsNull())
@@ -170,7 +174,17 @@ void ToCNFAIG::fill_node_to_var(
         Aig_Obj_t* pObj;
         pObj = (Aig_Obj_t*)Vec_PtrEntry(mgr.aigMgr->vPis, b[i].symbol_index);
         v[i] = cnfData->pVarNums[pObj->Id];
+          
+        if (!foundFirst) {
+          first = v[i];
+          foundFirst = true;
+        }
+        last = v[i];
       }
+    }
+    
+    if (uf.verbose_solver) {
+      std::cout << "*** " << n.GetName() << " width=" << width << " vars=" << first << "-" << last << endl;
     }
 
     nodeToVars.insert(make_pair(n, v));

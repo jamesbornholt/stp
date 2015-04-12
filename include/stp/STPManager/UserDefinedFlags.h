@@ -49,6 +49,8 @@ private:
 public:
   // collect statistics on certain functions
   bool stats_flag;
+    
+  bool verbose_solver;
 
   int64_t timeout_max_conflicts;
 
@@ -215,6 +217,8 @@ public:
 
     // collect statistics on certain functions
     stats_flag = false;
+      
+    verbose_solver = false;
 
     // print DAG nodes
     print_nodes_flag = false;

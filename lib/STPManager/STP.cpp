@@ -100,6 +100,8 @@ SATSolver* STP::get_new_sat_solver()
       break;
     case UserDefinedFlags::MINISAT_SOLVER:
       newS = new MinisatCore;
+      if (bm->UserFlags.verbose_solver)
+        newS->setVerboseSolver(true);
       break;
     default:
       std::cerr << "ERROR: Undefined solver to use." << endl;
