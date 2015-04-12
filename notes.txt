@@ -1,2 +1,12 @@
 Building with MiniSat:
     cmake -G 'Unix Makefiles' -DMINISAT_LIBRARY_DIRS=/Users/james/uw/sat-heuristics/minisat/build/ -DMINISAT_INCLUDE_DIRS=/Users/james/uw/sat-heuristics/minisat/ ..
+
+Xcode build (after doing the same for minisat):
+    cmake -G 'Xcode' -DMINISAT_LIBRARY_DIRS=/Users/james/uw/sat-heuristics/minisat/build-xcode/Debug/ -DMINISAT_INCLUDE_DIRS=/Users/james/uw/sat-heuristics/minisat/ -DBUILD_SHARED_LIBS=OFF -DENABLE_PYTHON_INTERFACE=OFF ..
+
+Running smtlib2 files:
+    ./stp --SMTLIB2 ~/uw/project-au14/oracle-guided-synthesis/query_0.smt2 
+
+default settings bitblast through ToSATAIG.cpp:56
+
+want to add a pointer in BBNodeAIG. how does that end up in minisat?
