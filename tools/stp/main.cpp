@@ -218,6 +218,9 @@ void ExtraMain::create_options()
       ("verbose-solver",
        po::bool_switch(&(bm->UserFlags.verbose_solver)),
        "Print verbose solver info")
+      ("synthesis-order",
+       po::bool_switch(&(bm->UserFlags.synthesis_order)),
+       "Pass synthesis order info to SAT solver")
       ("print-varorder,z",
        po::bool_switch(&(bm->UserFlags.print_sat_varorder_flag)),
        "Print SAT variable order")(

@@ -51,6 +51,8 @@ public:
   bool stats_flag;
     
   bool verbose_solver;
+    
+  bool synthesis_order;
 
   int64_t timeout_max_conflicts;
 
@@ -219,6 +221,7 @@ public:
     stats_flag = false;
       
     verbose_solver = false;
+    synthesis_order = false;
 
     // print DAG nodes
     print_nodes_flag = false;

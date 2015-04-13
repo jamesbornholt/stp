@@ -90,9 +90,9 @@ void SimplifyingMinisat::setSeed(int i)
   s->random_seed = i;
 }
 
-uint32_t SimplifyingMinisat::newVar()
+uint32_t SimplifyingMinisat::newVar(int cost)
 {
-  return s->newVar();
+  return s->newVar(cost);
 }
 
 unsigned long SimplifyingMinisat::nVars()

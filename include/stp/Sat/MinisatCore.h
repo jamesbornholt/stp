@@ -62,7 +62,7 @@ public:
 
   uint8_t value(uint32_t x) const;
 
-  virtual uint32_t newVar();
+  virtual uint32_t newVar(int cost = 0);
 
   void setVerbosity(int v);
   

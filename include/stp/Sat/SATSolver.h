@@ -73,7 +73,7 @@ public:
 
   virtual uint8_t modelValue(uint32_t x) const = 0;
 
-  virtual uint32_t newVar() = 0;
+  virtual uint32_t newVar(int cost = 0) = 0;
 
   virtual unsigned long nVars() = 0;
 

@@ -79,7 +79,7 @@ uint8_t CryptoMinisat::modelValue(uint32_t x) const
   return s->model[x].getchar();
 }
 
-uint32_t CryptoMinisat::newVar()
+uint32_t CryptoMinisat::newVar(int cost)
 {
   return s->newVar();
 }

@@ -140,10 +140,27 @@ void ToSATAIG::add_cnf_to_solver(SATSolver& satSolver, Cnf_Dat_t* cnfData)
 {
   bm->GetRunTimes()->start(RunTimes::SendingToSAT);
 
+  hash_set<unsigned> symbol_vars;
+  
+  if (bm->UserFlags.synthesis_order)
+  {
+    for (ASTNodeToSATVar::const_iterator it = nodeToSATVar.begin();
+        it != nodeToSATVar.end(); it++) 
+    {
+      const char *name = it->first.GetName();
+      if (name[0] != 'l' || name[1] != '_') continue;
+      for (vector<unsigned>::const_iterator uit = it->second.begin();
+          uit != it->second.end(); uit++) 
+      {
+        symbol_vars.insert(*uit);
+      }
+    }
+  }
+    
   // Create a new sat variable for each of the variables in the CNF.
   int satV = satSolver.nVars();
   for (int i = 0; i < cnfData->nVars - satV; i++)
-    satSolver.newVar();
+    satSolver.newVar(symbol_vars.find(i) != symbol_vars.end() ? 10 : 0);
 
   SATSolver::vec_literals satSolverClause;
   for (int i = 0; i < cnfData->nClauses; i++)
