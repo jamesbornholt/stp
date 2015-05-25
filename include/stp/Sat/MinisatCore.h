@@ -65,8 +65,6 @@ public:
   virtual uint32_t newVar(int cost = 0);
 
   void setVerbosity(int v);
-  
-  void setVerboseSolver(bool verbose);
 
   unsigned long nVars();
 

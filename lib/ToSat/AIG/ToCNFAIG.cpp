@@ -183,7 +183,7 @@ void ToCNFAIG::fill_node_to_var(
       }
     }
     
-    if (uf.verbose_solver) {
+    if (uf.print_critical_vars) {
       std::cout << "*** " << n.GetName() << " width=" << width << " vars=" << first << "-" << last << endl;
     }
 

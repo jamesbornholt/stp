@@ -92,11 +92,6 @@ void MinisatCore::setVerbosity(int v)
 {
   s->verbosity = v;
 }
-  
-void MinisatCore::setVerboseSolver(bool verbose)
-{
-  s->verbose_decisions = verbose;
-}
 
 void MinisatCore::setSeed(int i)
 {

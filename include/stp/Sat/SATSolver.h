@@ -87,8 +87,6 @@ public:
   }
 
   virtual void setVerbosity(int v) = 0;
-  
-  virtual void setVerboseSolver(bool verbose) {}
 
   virtual lbool true_literal() = 0;
   virtual lbool false_literal() = 0;

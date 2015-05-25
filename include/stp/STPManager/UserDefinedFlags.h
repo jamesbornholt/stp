@@ -50,10 +50,10 @@ public:
   // collect statistics on certain functions
   bool stats_flag;
     
-  bool verbose_solver;
-    
-  bool synthesis_order;
-
+  // delta synth
+  int solver_verbosity;
+  bool print_critical_vars;
+  bool use_critical_vars;
   int critical_var_activity;
 
   int64_t timeout_max_conflicts;
@@ -221,9 +221,10 @@ public:
 
     // collect statistics on certain functions
     stats_flag = false;
-      
-    verbose_solver = false;
-    synthesis_order = false;
+    
+    solver_verbosity = 0;
+    print_critical_vars = false;
+    use_critical_vars = false;
     critical_var_activity = 10;
 
     // print DAG nodes

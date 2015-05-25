@@ -246,14 +246,17 @@ void ExtraMain::create_options()
 
   po::options_description delta_options("Delta options");
   delta_options.add_options()
-      ("verbose-solver",
-       po::bool_switch(&(bm->UserFlags.verbose_solver)),
-       "Print verbose solver info")
-      ("synthesis-order",
-       po::bool_switch(&(bm->UserFlags.synthesis_order)),
-       "Pass synthesis order info to SAT solver")
+      ("solver-verbosity",
+       po::value<int>(&(bm->UserFlags.solver_verbosity)),
+       "Set MiniSAT verbosity level")
+      ("use-critical-vars",
+       po::bool_switch(&(bm->UserFlags.use_critical_vars)),
+       "Enable sending critical variable info to MiniSAT")
       ("critical-var-activity", po::value<int>(&(bm->UserFlags.critical_var_activity)),
-       "Initial activity for critical variables");
+       "Initial activity for critical variables")
+      ("print-critical-vars",
+       po::bool_switch(&(bm->UserFlags.print_critical_vars)),
+       "Dump info about critical vars");
 
   cmdline_options.add(general_options)
       .add(solver_options)
