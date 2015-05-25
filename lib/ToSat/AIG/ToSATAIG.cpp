@@ -160,7 +160,7 @@ void ToSATAIG::add_cnf_to_solver(SATSolver& satSolver, Cnf_Dat_t* cnfData)
   // Create a new sat variable for each of the variables in the CNF.
   int satV = satSolver.nVars();
   for (int i = 0; i < cnfData->nVars - satV; i++)
-    satSolver.newVar(symbol_vars.find(i) != symbol_vars.end() ? 10 : 0);
+    satSolver.newVar(symbol_vars.find(i) != symbol_vars.end() ? bm->UserFlags.critical_var_activity : 0);
 
   SATSolver::vec_literals satSolverClause;
   for (int i = 0; i < cnfData->nClauses; i++)

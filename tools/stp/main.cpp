@@ -215,12 +215,6 @@ void ExtraMain::create_options()
       /*("constr-counterex,c",
          po::bool_switch(&(bm->UserFlags.construct_counterexample_flag))
           , "construct counterexample")*/
-      ("verbose-solver",
-       po::bool_switch(&(bm->UserFlags.verbose_solver)),
-       "Print verbose solver info")
-      ("synthesis-order",
-       po::bool_switch(&(bm->UserFlags.synthesis_order)),
-       "Pass synthesis order info to SAT solver")
       ("print-varorder,z",
        po::bool_switch(&(bm->UserFlags.print_sat_varorder_flag)),
        "Print SAT variable order")(
@@ -250,6 +244,17 @@ void ExtraMain::create_options()
                        "generate a random number for the SAT solver.")(
           "check-sanity,d", "construct counterexample and check it");
 
+  po::options_description delta_options("Delta options");
+  delta_options.add_options()
+      ("verbose-solver",
+       po::bool_switch(&(bm->UserFlags.verbose_solver)),
+       "Print verbose solver info")
+      ("synthesis-order",
+       po::bool_switch(&(bm->UserFlags.synthesis_order)),
+       "Pass synthesis order info to SAT solver")
+      ("critical-var-activity", po::value<int>(&(bm->UserFlags.critical_var_activity)),
+       "Initial activity for critical variables");
+
   cmdline_options.add(general_options)
       .add(solver_options)
       .add(refinement_options)
@@ -257,6 +262,7 @@ void ExtraMain::create_options()
       .add(input_options)
       .add(output_options)
       .add(misc_options)
+      .add(delta_options)
       .add(hiddenOptions);
 
   // Register everything except hiddenOptions
@@ -266,7 +272,8 @@ void ExtraMain::create_options()
       .add(print_options)
       .add(input_options)
       .add(output_options)
-      .add(misc_options);
+      .add(misc_options)
+      .add(delta_options);
 
   pos_options.add("file", 1);
 }

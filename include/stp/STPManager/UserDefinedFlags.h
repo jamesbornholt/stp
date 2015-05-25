@@ -54,6 +54,8 @@ public:
     
   bool synthesis_order;
 
+  int critical_var_activity;
+
   int64_t timeout_max_conflicts;
 
   // print DAG nodes
@@ -222,6 +224,7 @@ public:
       
     verbose_solver = false;
     synthesis_order = false;
+    critical_var_activity = 10;
 
     // print DAG nodes
     print_nodes_flag = false;
