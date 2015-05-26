@@ -53,8 +53,7 @@ public:
   // delta synth
   int solver_verbosity;
   bool print_critical_vars;
-  bool use_critical_vars;
-  int critical_var_activity;
+  int critical_vars;
 
   int64_t timeout_max_conflicts;
 
@@ -224,8 +223,7 @@ public:
     
     solver_verbosity = 0;
     print_critical_vars = false;
-    use_critical_vars = false;
-    critical_var_activity = 10;
+    critical_vars = 0;
 
     // print DAG nodes
     print_nodes_flag = false;

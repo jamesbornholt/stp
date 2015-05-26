@@ -249,11 +249,8 @@ void ExtraMain::create_options()
       ("solver-verbosity",
        po::value<int>(&(bm->UserFlags.solver_verbosity)),
        "Set MiniSAT verbosity level")
-      ("use-critical-vars",
-       po::bool_switch(&(bm->UserFlags.use_critical_vars)),
-       "Enable sending critical variable info to MiniSAT")
-      ("critical-var-activity", po::value<int>(&(bm->UserFlags.critical_var_activity)),
-       "Initial activity for critical variables")
+      ("critical-vars", po::value<int>(&(bm->UserFlags.critical_vars)),
+       "Critical vars config")
       ("print-critical-vars",
        po::bool_switch(&(bm->UserFlags.print_critical_vars)),
        "Dump info about critical vars");

@@ -140,10 +140,10 @@ void ToSATAIG::add_cnf_to_solver(SATSolver& satSolver, Cnf_Dat_t* cnfData)
 {
   bm->GetRunTimes()->start(RunTimes::SendingToSAT);
 
-  hash_map<unsigned, int> critical_var_groups;
+  hash_map<unsigned, int> grps;
   int current_group = 0;
   
-  if (bm->UserFlags.use_critical_vars) {
+  if (bm->UserFlags.critical_vars > 0) {
     for (ASTNodeToSATVar::const_iterator it = nodeToSATVar.begin();
         it != nodeToSATVar.end(); it++) {
       const char *name = it->first.GetName();
@@ -151,16 +151,19 @@ void ToSATAIG::add_cnf_to_solver(SATSolver& satSolver, Cnf_Dat_t* cnfData)
       current_group++;
       for (vector<unsigned>::const_iterator uit = it->second.begin();
           uit != it->second.end(); uit++) {
-        critical_var_groups[*uit] = current_group;
+        grps[*uit] = current_group;
       }
     }
   }
     
   // Create a new sat variable for each of the variables in the CNF.
   int satV = satSolver.nVars();
+  bool use_costs = bm->UserFlags.critical_vars & 0x1;
+  bool use_groups = bm->UserFlags.critical_vars & 0x2;
+  int activity = 1;
   for (int i = 0; i < cnfData->nVars - satV; i++)
-    satSolver.newVar(critical_var_groups.count(i) > 0 ? bm->UserFlags.critical_var_activity : 0,
-                     critical_var_groups.count(i) > 0 ? critical_var_groups[i] : 0);
+    satSolver.newVar(use_costs  && grps.count(i) > 0 ? activity : 0,
+                     use_groups && grps.count(i) > 0 ? grps[i]  : 0);
 
   SATSolver::vec_literals satSolverClause;
   for (int i = 0; i < cnfData->nClauses; i++)
