@@ -83,9 +83,9 @@ uint8_t MinisatCore::modelValue(uint32_t x) const
   return Minisat::toInt(s->modelValue(x));
 }
 
-uint32_t MinisatCore::newVar(int cost)
+uint32_t MinisatCore::newVar(int cost, int group)
 {
-  return s->newVar(cost);
+  return s->newVar(cost, group);
 }
 
 void MinisatCore::setVerbosity(int v)

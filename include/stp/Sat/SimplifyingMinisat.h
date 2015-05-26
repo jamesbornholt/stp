@@ -57,7 +57,7 @@ public:
 
   virtual uint8_t modelValue(uint32_t x) const;
 
-  virtual uint32_t newVar(int cost = 0);
+  virtual uint32_t newVar(int cost = 0, int group = 0);
 
   unsigned long nVars();
 
